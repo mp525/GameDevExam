@@ -7,9 +7,9 @@ public class FriendlyAI : MonoBehaviour
     // i will go back to this it aint good enough yet
     public enum AIState { Idle, Walking, jumping, Running }
     public AIState currentState = AIState.Idle;
-    public int awarenessArea = 15; //How far the friendly AI should detect the enemy
+    public int awarenessArea = 10; //How far the friendly AI should detect the enemy
     public float walkingSpeed = 3.5f; //how Fast should it walk
-    public float runningSpeed = 10f;//how Fast should it run
+    public float runningSpeed = 5f;//how Fast should it run
     public Animator animator;
 
     //Trigger collider that represents the awareness area
@@ -110,7 +110,7 @@ public class FriendlyAI : MonoBehaviour
                 if(!animator || animator.GetCurrentAnimatorStateInfo(0).normalizedTime - Mathf.Floor(animator.GetCurrentAnimatorStateInfo(0).normalizedTime) > 0.99f)
                 {
                     //Walk to another random destination
-                    agent.destination = RandomNavSphere(transform.position, Random.Range(3, 19));
+                    agent.destination = RandomNavSphere(transform.position, Random.Range(3, 10));
                     
                     currentState = AIState.Walking;
                     SwitchAnimationState(currentState);
@@ -154,6 +154,7 @@ public class FriendlyAI : MonoBehaviour
                     {
                         if(timeStuck > 1.5f)
                         {
+                            //Maybe problem with this
                             if(previousIdlePoints.Count > 0)
                             {
                                 runTo = previousIdlePoints[Random.Range(0, previousIdlePoints.Count - 1)];

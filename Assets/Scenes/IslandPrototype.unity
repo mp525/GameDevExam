@@ -109,7 +109,7 @@ NavMeshSettings:
     agentRadius: 0.5
     agentHeight: 2
     agentSlope: 45
-    agentClimb: 0.4
+    agentClimb: 1
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
@@ -205,15 +205,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2658392627388529508, guid: 352b69cd0359bef46a8cccbe28f34eb6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 407.1
+      value: 409.77
       objectReference: {fileID: 0}
     - target: {fileID: 2658392627388529508, guid: 352b69cd0359bef46a8cccbe28f34eb6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.66
+      value: 10.1
       objectReference: {fileID: 0}
     - target: {fileID: 2658392627388529508, guid: 352b69cd0359bef46a8cccbe28f34eb6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 248.77
+      value: 211.8
       objectReference: {fileID: 0}
     - target: {fileID: 2658392627388529508, guid: 352b69cd0359bef46a8cccbe28f34eb6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -572,15 +572,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3102195559244762023, guid: fb3c5dc87d24b9c489234a82f1a30530, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 387.7
+      value: 356.3
       objectReference: {fileID: 0}
     - target: {fileID: 3102195559244762023, guid: fb3c5dc87d24b9c489234a82f1a30530, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.1
+      value: 8.7
       objectReference: {fileID: 0}
     - target: {fileID: 3102195559244762023, guid: fb3c5dc87d24b9c489234a82f1a30530, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 265.5
+      value: 406.1
       objectReference: {fileID: 0}
     - target: {fileID: 3102195559244762023, guid: fb3c5dc87d24b9c489234a82f1a30530, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1110,7 +1110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 324281923821471967, guid: 56cc01b08e2bea64fa2544d29e9628e6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.4
+      value: 8.8
       objectReference: {fileID: 0}
     - target: {fileID: 324281923821471967, guid: 56cc01b08e2bea64fa2544d29e9628e6, type: 3}
       propertyPath: m_LocalPosition.z
