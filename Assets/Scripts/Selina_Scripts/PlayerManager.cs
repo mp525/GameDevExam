@@ -8,6 +8,11 @@ public class PlayerManager : MonoBehaviour
 InputManager inputManager;
 PlayerMotion playerMotion;
 CameraManager cameraManager;
+public float hunger = 100f;
+public float health = 100f;
+[SerializeField] private float hungerOverTime = 100;
+
+
 
 
     private void Awake()
@@ -21,7 +26,13 @@ CameraManager cameraManager;
     private void Update()
     {
         inputManager.HandleAllInputs();
+        HungerOverTime();
 
+    }
+
+    void HungerOverTime()
+    {
+        hunger -= (hungerOverTime * Time.deltaTime);
     }
 
     private void FixedUpdate()
