@@ -10,4 +10,5 @@ The Friendly AI are state based with different factors that decide which state t
 Idle and jumping, if there is no one around it will sometimes jump or be idle
 it will sometimes walk to different random destinations. If an enemy is near it will run away.
 There are different animations connected to the script with a method that handles animation, that makes the booleans true and make the animations start.
+I have made the dog AI script different than the penguin and chicken because i plan to make it somehow be more connected to the player later.
 I plan to make an enemy AI to give a challenge to the player. 
