@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4912536897705504}
   - component: {fileID: 33989385991057262}
   - component: {fileID: 23890990353640460}
-  - component: {fileID: 64004332394335928}
+  - component: {fileID: 5361257956840383560}
   m_Layer: 0
   m_Name: oakTree
   m_TagString: Untagged
@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1377331622712542}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 11.13, y: 0, z: -9.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -83,8 +83,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64004332394335928
-MeshCollider:
+--- !u!136 &5361257956840383560
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -93,7 +93,7 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: ccafc2ea8bec52841ac2b9fd34238310, type: 3}
+  m_Radius: 0.62
+  m_Height: 13.187584
+  m_Direction: 1
+  m_Center: {x: 0.07, y: 6.5933123, z: -0.12}

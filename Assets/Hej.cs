@@ -19,5 +19,6 @@ public class Hej : MonoBehaviour
 
     void OnCollisionEnter(Collision c){
         Debug.Log("Collision with " + c.gameObject.name);
+        Destroy(gameObject);
     }
 }
