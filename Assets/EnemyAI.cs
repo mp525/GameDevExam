@@ -1,11 +1,12 @@
  using UnityEngine;
 using UnityEngine.AI;
 using System.Collections.Generic;
+using System.Collections;
 
 public class EnemyAI : MonoBehaviour
 {
-    // i will go back to this it aint good enough yet
-    public enum AIState { Idle, Walking, growling, Running, Hit }
+   
+    public enum AIState { Idle, Walking, growling, Running,Hit }
     public AIState currentState = AIState.Idle;
     public int awarenessArea = 10; //How far the friendly AI should detect the enemy
     public float walkingSpeed = 3.5f; //how Fast should it walk
@@ -32,6 +33,7 @@ public class EnemyAI : MonoBehaviour
     float timeStuck = 0;
     //Store previous idle points for reference
     List<Vector3> previousIdlePoints = new List<Vector3>(); 
+    public int attackDamage=10;
 
     // Start is called before the first frame update
     void Start()
@@ -49,9 +51,9 @@ public class EnemyAI : MonoBehaviour
         actionTimer = Random.Range(0.1f, 2.0f);
         SwitchAnimationState(currentState);
     }
-
+    
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //Wait for the next course of action
         if (actionTimer > 0)
@@ -111,6 +113,7 @@ public class EnemyAI : MonoBehaviour
             if (switchAction)
             {
                 //Wait for current animation to finish playing
+                //Maybe use this for attack also
                 if(!animator || animator.GetCurrentAnimatorStateInfo(0).normalizedTime - Mathf.Floor(animator.GetCurrentAnimatorStateInfo(0).normalizedTime) > 0.99f)
                 {
                     //Walk to another random destination
@@ -164,26 +167,50 @@ public class EnemyAI : MonoBehaviour
                 {
                     SwitchAnimationState(AIState.Idle);
                 }
-                 if(distance<4)
+                //if dead then dont do more damage
+                 if(distance<2 && enemy.gameObject.activeSelf)
                 {
                     SwitchAnimationState(AIState.Hit);
-                }
-                else
+                    
+                    enemy.gameObject.GetComponent<FriendlyAI>().TakeDamage(attackDamage);
+                    
+                    
+
+                }else
                 {
+                    agent.isStopped=false;
                     SwitchAnimationState(AIState.Running);
+                    if (!enemy.gameObject.activeSelf)
+                {
+                    enemy=null;
+                    
+                     //go back to do what u did at the start
+                     //must do so it doesnt get stuck here
+                     //for now it just waits for enemy and then goes after it
+                    SwitchAnimationState(AIState.Idle);
+                    
+                    var dest = RandomNavSphere(transform.position, Random.Range(3, 10));  
+                                    agent.SetDestination(dest);
+
+                    return;
+                    
                 }
+                }
+                //then growl cuz u won battle
+                
+                
 
                 
                 
             }
             else
             {
+                
                 //Check if we've reached the destination then stop running
                 if (DoneReachingDestination())
                 {
                    actionTimer = Random.Range(2f, 5f);
-                    currentState = AIState.Hit;
-                    SwitchAnimationState(AIState.Hit);
+                    
                     
                      
                 }
@@ -195,6 +222,7 @@ public class EnemyAI : MonoBehaviour
 
     bool DoneReachingDestination()
     {
+
         if (!agent.pathPending)
         {
             if (agent.remainingDistance <= agent.stoppingDistance)
@@ -206,6 +234,7 @@ public class EnemyAI : MonoBehaviour
                 }
             }
         }
+        
 
         return false;
     }
@@ -239,7 +268,11 @@ public class EnemyAI : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (!enemy){
-             enemy = other.transform;
+            if (other.gameObject.activeSelf)
+            {
+             enemy = other.transform;   
+            }
+             
 
         actionTimer = Random.Range(0.24f, 0.8f);
         currentState = AIState.Running;
@@ -248,20 +281,26 @@ public class EnemyAI : MonoBehaviour
         
        
     }
-    private void OnTriggerStay(Collider other) {
-        if (enemy)
-        {
-            
-        if (distance<3)
-        {
-            
-            SwitchAnimationState(AIState.Hit);
-        }     
-        }
-       
+
+    void ReactToHealthLoss(){
+       //maybe run away or run faster
     }
+
+    void Death(){
+       
+            //then deactivate agent
+           
+            //makes agent fall
+        
+    }
+    
      
-   
+    IEnumerator ExampleCoroutine()
+    {
+        //yield on a new YieldInstruction that waits for 1 seconds.
+        yield return new WaitForSeconds(11);
+
+    }
 }
 
 
