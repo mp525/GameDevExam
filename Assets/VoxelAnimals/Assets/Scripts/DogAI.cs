@@ -73,7 +73,6 @@ public class DogAI : MonoBehaviour
                     //Run away
                     agent.SetDestination(RandomNavSphere(transform.position, Random.Range(1, 2.4f)));
                     currentState = AIState.Running;
-                    Debug.Log("enemy near now running vuff vuff");
                     SwitchAnimationState(currentState);
                 }
                 else

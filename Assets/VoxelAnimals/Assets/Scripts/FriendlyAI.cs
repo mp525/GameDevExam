@@ -1,6 +1,7 @@
   using UnityEngine;
 using UnityEngine.AI;
 using System.Collections.Generic;
+using System.Collections;
 
 public class FriendlyAI : MonoBehaviour
 {
@@ -14,13 +15,12 @@ public class FriendlyAI : MonoBehaviour
 
     //Trigger collider that represents the awareness area
     SphereCollider c; 
-    //NavMesh Agent
     NavMeshAgent agent;
 
     bool switchAction = false;
     float actionTimer = 0; //Timer duration till the next action
     Transform enemy;
-    float range = 20; //How far the Deer have to run to resume the usual activities
+    float range = 20; //How far the Animal have to run to resume the usual activities
     float multiplier = 1;
     bool reverseFlee = false; //In case the AI is stuck, send it to one of the original Idle points
 
@@ -33,6 +33,12 @@ public class FriendlyAI : MonoBehaviour
     //Store previous idle points for reference
     List<Vector3> previousIdlePoints = new List<Vector3>(); 
 
+    AIManager aIManager;
+    float health=100;
+    HealthBarAI healthBarAI;
+    //public GameObject food;
+
+    bool firstTime=true;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,12 +54,19 @@ public class FriendlyAI : MonoBehaviour
         currentState = AIState.Idle;
         actionTimer = Random.Range(0.1f, 2.0f);
         SwitchAnimationState(currentState);
+        
+        healthBarAI=GetComponentInChildren<HealthBarAI>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (health<1)
+        {
+            Death();
+        }
         //Wait for the next course of action
+        //The indication of thinking even tho its not i guess
         if (actionTimer > 0)
         {
             actionTimer -= Time.deltaTime;
@@ -62,9 +75,12 @@ public class FriendlyAI : MonoBehaviour
         {
             switchAction = true;
         }
-
+        
         if (currentState == AIState.Idle)
         {
+            //if switch action is called do one of two things 
+            //1 run to a random place if enemy near
+            //2 start jumping because you are happy there is no enemies
             if(switchAction)
             {
                 if (enemy)
@@ -76,12 +92,10 @@ public class FriendlyAI : MonoBehaviour
                 }
                 else
                 {
-                    //No enemies nearby, start eating
+                    //No enemies nearby, start jumping
                     actionTimer = Random.Range(2, 5);
-
                     currentState = AIState.jumping;
                     SwitchAnimationState(currentState);
-
                     //Keep last 5 Idle positions for future reference
                     previousIdlePoints.Add(transform.position);
                     if (previousIdlePoints.Count > 5)
@@ -102,6 +116,7 @@ public class FriendlyAI : MonoBehaviour
                 currentState = AIState.Idle;
             }
         }
+        //better stop jumping and walk to a different place
         else if (currentState == AIState.jumping)
         {
             if (switchAction)
@@ -252,9 +267,36 @@ public class FriendlyAI : MonoBehaviour
 
         enemy = other.transform;
 
+        //make something here so they might get eaten by tiger and die
+        
         actionTimer = Random.Range(0.24f, 0.8f);
         currentState = AIState.Running;
         SwitchAnimationState(currentState);
+    }
+    public void Death(){
+        if (firstTime)
+        {
+        gameObject.SetActive(false);
+        firstTime=false;   
+        Debug.Log(gameObject.name+" died"); 
+        }
+        //if human does this add some meat to human inventory
+        
+       
+        
+    }
+    public void TakeDamage(float damage){
+   
+        health=health+-damage;
+        healthBarAI.TakeDamage(damage);
+        healthBarAI.SetCurrentHealth(health);                                         
+        Debug.Log(health);
+       if (health<1)
+       {
+            Death();
+        
+       }
+        
     }
    
 }
