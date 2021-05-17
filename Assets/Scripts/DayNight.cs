@@ -10,6 +10,8 @@ public class DayNight : MonoBehaviour
 
     public float daySpeed;
 
+    private string darkShadow = "OC191B";
+
     void Start()
     {
         
@@ -24,10 +26,12 @@ public class DayNight : MonoBehaviour
 
     void FixedUpdate(){
         if(transform.position.y >= 0){
-            RenderSettings.skybox = day;
+            //RenderSettings.skybox = day;
+            daySpeed = 0.5f;
         }
         else{
-            RenderSettings.skybox = night;
+            //RenderSettings.skybox = night;
+            daySpeed = 2f;
         }
     }
 }
