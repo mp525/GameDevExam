@@ -45,7 +45,7 @@ public class DayNight : MonoBehaviour
             return;
         }
 
-        if (transform.position.y >= 300)
+        if (transform.position.y >= 100)
         {
             source.clip = daySound;
             if (!source.isPlaying)
@@ -56,6 +56,8 @@ public class DayNight : MonoBehaviour
 
             //Make days longer than nights
             //daySpeed = 0.5f; 
+            RenderSettings.ambientIntensity = 1;
+            RenderSettings.reflectionIntensity = 1;
             RenderSettings.fog = false;
         }
 
@@ -68,23 +70,26 @@ public class DayNight : MonoBehaviour
                 source.loop = true;
             }
 
+            /* if (transform.position.y <= 100 && transform.position.z <= 0){
+                Debug.Log("Sunrise");
+                RenderSettings.fogDensity -= 0.001f;
+            } */
+
             RenderSettings.fog = true;
             RenderSettings.fogColor = new Color(0, 0, 0);
-            //RenderSettings.ambientIntensity = 0;
-            //RenderSettings.reflectionIntensity = 0;
+            //RenderSettings.ambientIntensity = 0.05f;
+            //RenderSettings.reflectionIntensity = 0.05f;
 
-            if (transform.position.y < 300 && transform.position.y > 0)
+            if (transform.position.y < 100 && transform.position.y > 0)
             {
-                Debug.Log("Sun's getting real low...");
-                if (RenderSettings.fogDensity < 0.15f)
+                Debug.Log("Sunset");
+                if (RenderSettings.fogDensity < 0.10f)
                 {
                     RenderSettings.fogDensity += 0.001f;
                 }
             }
             //Make nights shorter than days
             //daySpeed = 2f; 
-            //RenderSettings.ambientIntensity = 0;
-            //RenderSettings.reflectionIntensity = 0;
 
         }
     }
