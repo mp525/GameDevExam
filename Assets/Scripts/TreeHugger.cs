@@ -7,6 +7,8 @@ public class TreeHugger : MonoBehaviour
 {
     [SerializeField] private float m_destructionRange = 1.5f;
 
+    [SerializeField] private GameObject treePrefab;
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Terrain")
@@ -16,12 +18,15 @@ public class TreeHugger : MonoBehaviour
 
             foreach (TreeInstance tree in terrain.treeInstances)
             {
+                
                 var treePos = (Vector3.Scale(tree.position, terrain.size) + Terrain.activeTerrain.transform.position);
                 float distance = (treePos - transform.position).magnitude;
 
                 if (distance <= m_destructionRange)
                 {
+                    
                     // You can spawn a prefab of the tree here! 
+                    Instantiate(treePrefab, new Vector3(treePos.x, treePos.y, treePos.z), Quaternion.identity);
                     Debug.Log(VegetationSpawner.Current.treeTypes[tree.prototypeIndex].name);
                 }
                 else
