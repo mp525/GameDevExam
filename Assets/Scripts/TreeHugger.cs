@@ -5,9 +5,7 @@ using UnityEngine;
 
 public class TreeHugger : MonoBehaviour
 {
-    [SerializeField] private float m_destructionRange = 1.5f;
-
-    [SerializeField] private GameObject treePrefab;
+    [SerializeField] private float m_destructionRange = 2.15f;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -24,9 +22,10 @@ public class TreeHugger : MonoBehaviour
 
                 if (distance <= m_destructionRange)
                 {
-                    
+                    string prefabName = VegetationSpawner.Current.treeTypes[tree.prototypeIndex].name;
+                    //Resources.Load(prefabName);
                     // You can spawn a prefab of the tree here! 
-                    Instantiate(treePrefab, new Vector3(treePos.x, treePos.y, treePos.z), Quaternion.identity);
+                    Instantiate(Resources.Load("Prefabs/Trees/"+prefabName), treePos, Quaternion.identity);
                     Debug.Log(VegetationSpawner.Current.treeTypes[tree.prototypeIndex].name);
                 }
                 else
