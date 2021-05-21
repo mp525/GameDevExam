@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
-
 {
+InventoryObject inventory;
 InputManager inputManager;
 PlayerMotion playerMotion;
 CameraManager cameraManager;
