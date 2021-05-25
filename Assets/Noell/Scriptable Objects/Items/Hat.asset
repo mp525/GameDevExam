@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac6b06c4f30315e4a816e6ed36738485, type: 3}
   m_Name: Hat
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 4940704501405278734, guid: e6ca8ba5a3da43d4d9f3d09e86f234e7, type: 3}
   type: 1
   description: This is a hat.
   attackBonus: 0
