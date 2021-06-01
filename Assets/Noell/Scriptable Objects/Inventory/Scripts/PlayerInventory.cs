@@ -6,6 +6,9 @@ public class PlayerInventory : MonoBehaviour
 {
     public InventoryObject inventory;
 
+    [SerializeField] KeyCode saveKey = KeyCode.Space;
+    [SerializeField] KeyCode loadKey = KeyCode.Tab;
+
     public void OnTriggerEnter(Collider other) 
     {
         var item = other.GetComponent<Item>();
@@ -19,6 +22,21 @@ public class PlayerInventory : MonoBehaviour
             Destroy(other.gameObject);
         }
 
+    }
+
+    private void Update() 
+    {
+        if(Input.GetKeyDown(saveKey))    
+        {
+            inventory.Save();
+            Debug.Log("Saved inventory!");
+        }
+        if(Input.GetKeyDown(loadKey))    
+        {
+            inventory.Load();
+            Debug.Log("Loaded inventory!");
+
+        }
     }
 
     private void OnApplicationQuit() 
