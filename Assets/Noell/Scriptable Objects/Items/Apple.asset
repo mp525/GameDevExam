@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d36e6881ba9a7864f81991693f5f5e5e, type: 3}
   m_Name: Apple
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1624550317525199784, guid: 398db9a156846404faa5e27ae33d33d0, type: 3}
+  prefab: {fileID: 1219290021142128387, guid: dc3fbd58b801b454ebf94ef267fa117c, type: 3}
   type: 0
   description: There's nothing like a freshly picked apple.
   restoreHungerValue: 10
