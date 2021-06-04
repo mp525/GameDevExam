@@ -8,6 +8,7 @@ TagManager:
   - Tree
   - Enemy
   - Axehead
+  - Food
   layers:
   - Default
   - TransparentFX

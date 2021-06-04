@@ -13,6 +13,10 @@ public class TreeInteract : MonoBehaviour
         string collisionName = collision.gameObject.name;
         Debug.Log("Collision with " + collisionName);
 
+        if(collisionName.Equals("BigOak")){
+            return;
+        }
+
         if(collision.gameObject.tag.Equals("Axehead")){ //Muligvis øksehoved i fremtiden
             gameObject.GetComponent<AudioSource>().Play();
             if(treeHealth == 1.0f){
