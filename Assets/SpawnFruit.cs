@@ -17,9 +17,5 @@ public class SpawnFruit : MonoBehaviour
         Instantiate(fruitPrefab, new Vector3(transform.position.x, transform.position.y,transform.position.z), Quaternion.identity);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+  
 }

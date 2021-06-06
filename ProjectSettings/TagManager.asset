@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Axehead
   - Food
+  - Stone
   layers:
   - Default
   - TransparentFX
