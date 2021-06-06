@@ -290,7 +290,6 @@ public class FriendlyAI : MonoBehaviour
         health=health+-damage;
         healthBarAI.TakeDamage(damage);
         healthBarAI.SetCurrentHealth(health);                                         
-        Debug.Log(health);
        if (health<1)
        {
             Death();
