@@ -55,7 +55,7 @@ public class DayNight : MonoBehaviour
             }
 
             //Make days longer than nights
-            //daySpeed = 0.5f; 
+            daySpeed = 0.5f; 
             RenderSettings.ambientIntensity = 1;
             RenderSettings.reflectionIntensity = 1;
             RenderSettings.fog = false;
@@ -89,7 +89,7 @@ public class DayNight : MonoBehaviour
                 }
             }
             //Make nights shorter than days
-            //daySpeed = 2f; 
+            daySpeed = 2f; 
 
         }
     }
