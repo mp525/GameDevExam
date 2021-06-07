@@ -11,12 +11,15 @@ public class PlayerMotion : MonoBehaviour
 
     public float movementSpeed = 7;
     public float rotationSpeed = 15;
+    public Animator anim;
 
     private void Awake()
     {
         inputManager = GetComponent<InputManager>();
         playerRB = GetComponent<Rigidbody>();
+        anim = GetComponent<Animator>();
         cameraObject = Camera.main.transform;
+        anim.SetFloat("Speed", 0.0f);
     }
 
     public void HandleAllMovement()
@@ -29,16 +32,30 @@ public class PlayerMotion : MonoBehaviour
     
     private void HandleMovement()
     {
+    //Hvis moveDirections værdi er mindre end 0.1, så skal animationen sættes til at være "Idle"
+        if(moveDirection.magnitude < 0.1f)
+        {
+            anim.SetFloat("Speed", 0.0f);
+        }
+
+
         moveDirection = cameraObject.forward * inputManager.verticalInput;
         moveDirection = moveDirection + cameraObject.right * inputManager.horizontalInput;
         moveDirection.Normalize();
         moveDirection.y = 0;
         moveDirection = moveDirection * movementSpeed;
+        
 
+        Debug.Log("Magnitude : " + moveDirection.magnitude);
 
         Vector3 movementVelocity = moveDirection;
         playerRB.velocity = movementVelocity;
 
+    //Hvis moveDirections værdi er større end 0.1, så skal animationen sættes til at være "Run"
+        if(moveDirection.magnitude > 0.1f)
+        {
+            anim.SetFloat("Speed", 7f);
+        }
     }
 
     private void HandleRotation()
