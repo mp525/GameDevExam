@@ -1363,6 +1363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildings:
   - {fileID: 4881280103120466799, guid: 7c6c9b35e55ac3f469a7aacd58a51294, type: 3}
+  - {fileID: 3328361113755735603, guid: a1fde92a6988a774aaf141834173acd9, type: 3}
 --- !u!1001 &630835616
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class BuildingPlacement : MonoBehaviour
 {
@@ -36,8 +38,11 @@ public class BuildingPlacement : MonoBehaviour
         }
 
         if(Input.GetMouseButtonDown(0)){
-            if(IsLegalPosition())
+            Debug.Log("Click");
+            if(IsLegalPosition()){
                 hasPlaced = true;
+            }
+                
         }
 
         if(Input.mouseScrollDelta.y > 0.0f){
@@ -49,6 +54,12 @@ public class BuildingPlacement : MonoBehaviour
             currentBuilding.rotation = Quaternion.Euler(0, rotY, 0);
         }
     }
+    
+    }
+
+    internal void CancelCurrentBuild()
+    {
+        Destroy(currentBuilding.gameObject);
     }
 
     bool HasResources(){
@@ -65,9 +76,15 @@ public class BuildingPlacement : MonoBehaviour
     }
 
     bool IsLegalPosition(){
+        if(IsPointerOverUIElement()){
+            hasPlaced = false;
+            
+            return false;
+        }
         if(placeableBuilding.colliders.Count > 0){
             return false;
         }
+        
         return true;
     }
 
@@ -75,5 +92,35 @@ public class BuildingPlacement : MonoBehaviour
         hasPlaced = false;
         currentBuilding = ((GameObject)Instantiate(b)).transform;
         placeableBuilding = currentBuilding.GetComponent<PlaceableBuilding>();
+    }
+
+    
+
+    //Forsøg på at fikse bug med placering af bygning på close knappen
+    public bool IsPointerOverUIElement()
+    {
+        return IsPointerOverUIElement(GetEventSystemRaycastResults());
+    }
+     //Returns 'true' if we touched or hovering on Unity UI element.
+    private bool IsPointerOverUIElement(List<RaycastResult> eventSystemRaysastResults)
+    {
+        for (int index = 0; index < eventSystemRaysastResults.Count; index++)
+        {
+            RaycastResult curRaysastResult = eventSystemRaysastResults[index];
+            if (curRaysastResult.gameObject.layer == 5)
+                return true;
+        }
+        return false;
+    }
+ 
+ 
+    //Gets all event system raycast results of current mouse or touch position.
+    static List<RaycastResult> GetEventSystemRaycastResults()
+    {
+        PointerEventData eventData = new PointerEventData(EventSystem.current);
+        eventData.position = Input.mousePosition;
+        List<RaycastResult> raysastResults = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventData, raysastResults);
+        return raysastResults;
     }
 }

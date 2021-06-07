@@ -33,13 +33,15 @@ public class BuildingManager : MonoBehaviour
 
     void Buildings(){
         for(int i=0; i<buildings.Length; i++){
-                if(GUI.Button(new Rect(0, Screen.height/15 + Screen.height/12, 100,30), buildings[i].name)){
+                if(GUI.Button(new Rect(Screen.width/20, Screen.height/15 + Screen.height/12 * i, 100,30), buildings[i].name)){
                     buildingPlacement.SetItem(buildings[i]);
                 }
             }
-        if(GUI.Button(new Rect(0, Screen.height/15 + Screen.height/12, 100,30), "Close")){
+        if(GUI.Button(new Rect(Screen.width/20, Screen.height/15 + Screen.height/12 * 2, 100,30), "Close")){
                     builds = false;
                     menu = true;
+                    Debug.Log("Close");
+                    buildingPlacement.CancelCurrentBuild();
                 }
     }
 
