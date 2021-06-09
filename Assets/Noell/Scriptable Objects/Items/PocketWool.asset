@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4450b0a06cf7d0429c0c63043f14cd8, type: 3}
   m_Name: PocketWool
   m_EditorClassIdentifier: 
-  prefab: {fileID: 8147392015825663682, guid: 81ed40cb438f8de4285f5d555ec2a9bb, type: 3}
+  Id: 3
+  uiDisplay: {fileID: 3007502273959510769, guid: d07b803c54ae9fb4ebfc1e8a13b12f4c, type: 3}
   type: 2
   description: 'Some pocket wool you found in your pocket.
 

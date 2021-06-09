@@ -13,4 +13,55 @@ MonoBehaviour:
   m_Name: PlayerInventory
   m_EditorClassIdentifier: 
   savePath: /inventory.Save
-  Container: []
+  Container:
+    Items:
+    - ID: 0
+      item:
+        Name: Apple
+        Id: 0
+      amount: 1
+    - ID: 0
+      item:
+        Name: Ham
+        Id: 0
+      amount: 1
+    - ID: 0
+      item:
+        Name: Apple
+        Id: 0
+      amount: 1
+    - ID: 0
+      item:
+        Name: Ham
+        Id: 0
+      amount: 1
+    - ID: 1
+      item:
+        Name: Hat
+        Id: 1
+      amount: 1
+    - ID: 0
+      item:
+        Name: Apple
+        Id: 0
+      amount: 1
+    - ID: 3
+      item:
+        Name: PocketWool
+        Id: 3
+      amount: 1
+    - ID: 3
+      item:
+        Name: PocketWool
+        Id: 3
+      amount: 1
+    - ID: 0
+      item:
+        Name: Apple
+        Id: 0
+      amount: 1
+    - ID: 1
+      item:
+        Name: Hat
+        Id: 1
+      amount: 1

@@ -11,12 +11,12 @@ public class PlayerInventory : MonoBehaviour
 
     public void OnTriggerEnter(Collider other) 
     {
-        var item = other.GetComponent<Item>();
+        var item = other.GetComponent<GroundItem>();
 
         if(item)
         {
             //Adds item we collided with to the inventory
-            inventory.AddItem(item.item, 1);
+            inventory.AddItem(new Item(item.item), 1);
 
             //Destroys the item we collided with
             Destroy(other.gameObject);
@@ -41,6 +41,6 @@ public class PlayerInventory : MonoBehaviour
 
     private void OnApplicationQuit() 
     {
-        inventory.Container.Clear();    
+         inventory.Container.Items.Clear();    
     }
 }

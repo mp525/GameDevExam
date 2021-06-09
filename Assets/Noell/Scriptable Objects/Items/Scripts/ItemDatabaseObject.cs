@@ -8,27 +8,29 @@ public class ItemDatabaseObject : ScriptableObject, ISerializationCallbackReceiv
 {
     public ItemObject[] Items;
     //We use two dictionaries instead of one instead of using a double for loop 
-    public Dictionary<ItemObject, int> GetId = new Dictionary<ItemObject, int>();
+    // public Dictionary<Item, int> GetId = new Dictionary<Item, int>();
     public Dictionary<int, ItemObject> GetItem = new Dictionary<int, ItemObject >();
 
     public void OnAfterDeserialize()
     {
         //Clears out dictionary so we don't duplicate anything
-        GetId = new Dictionary<ItemObject, int>();
-        GetItem = new Dictionary<int, ItemObject>();
+        // GetId = new Dictionary<Item, int>();
 
         //Everytime Unity serializes the scriptable object, it will populate the dictionary
         //Loops through all the items
         for (int i = 0; i < Items.Length; i++)
         {
             //Adds the item's ID
-            GetId.Add(Items[i], i);            
+            // GetId.Add(Items[i], i); 
+            Items[i].Id = i;
             GetItem.Add(i, Items[i]);            
         }
     }
 
     public void OnBeforeSerialize()
     {
+        GetItem = new Dictionary<int, ItemObject>();
+
     }
 
 }
