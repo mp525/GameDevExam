@@ -9,13 +9,12 @@ public class HealthBarAI : MonoBehaviour
     public float currentHealth=100;
     //private float hp1;
     private float maxHealth = 100;
-        AIManager aiManager;
 
     // Start is called before the first frame update
     public void Start()
     {
         healthBar = GetComponent<Image>();
-        aiManager = FindObjectOfType<AIManager>();
+       
     }
 
     // Update is called once per frame

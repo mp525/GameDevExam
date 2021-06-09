@@ -34,6 +34,9 @@ public class EnemyAI : MonoBehaviour
     //Store previous idle points for reference
     List<Vector3> previousIdlePoints = new List<Vector3>(); 
     public int attackDamage=10;
+    float health=100;
+    HealthBarAI healthBarAI;
+    bool firstTime=true;
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +53,9 @@ public class EnemyAI : MonoBehaviour
         currentState = AIState.Idle;
         actionTimer = Random.Range(0.1f, 2.0f);
         SwitchAnimationState(currentState);
+
+        healthBarAI=GetComponentInChildren<HealthBarAI>();
+
     }
     
     // Update is called once per frame
@@ -76,9 +82,6 @@ public class EnemyAI : MonoBehaviour
                     agent.SetDestination(enemy.transform.position);
                     currentState = AIState.Running;
                     SwitchAnimationState(currentState);      
-                    
-                  
-                     
                 }
                 else
                 {
@@ -158,6 +161,8 @@ public class EnemyAI : MonoBehaviour
                     }
                     else
                     {
+                       
+
                         enemy = null;
                     }
                 }
@@ -168,11 +173,17 @@ public class EnemyAI : MonoBehaviour
                     SwitchAnimationState(AIState.Idle);
                 }
                 //if dead then dont do more damage
-                 if(distance<2 && enemy.gameObject.activeSelf)
+                 if(distance<2 )
                 {
                     SwitchAnimationState(AIState.Hit);
                     
+                    if(enemy.gameObject.GetComponent<FriendlyAI>()){
                     enemy.gameObject.GetComponent<FriendlyAI>().TakeDamage(attackDamage);
+                    }else
+                    {
+                        enemy.gameObject.GetComponent<AI>().TakeDamage(attackDamage);
+                    }
+                    
                     
                     
 
@@ -187,21 +198,17 @@ public class EnemyAI : MonoBehaviour
                      //go back to do what u did at the start
                      //must do so it doesnt get stuck here
                      //for now it just waits for enemy and then goes after it
-                    SwitchAnimationState(AIState.Idle);
+                    agent.destination = RandomNavSphere(transform.position, Random.Range(3, 10));
+                    SwitchAnimationState(AIState.Walking);
                     
-                    var dest = RandomNavSphere(transform.position, Random.Range(3, 10));  
-                                    agent.SetDestination(dest);
+                    
 
                     return;
                     
                 }
                 }
                 //then growl cuz u won battle
-                
-                
-
-                
-                
+   
             }
             else
             {
@@ -267,40 +274,67 @@ public class EnemyAI : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        
         if (!enemy){
             if (other.gameObject.activeSelf)
             {
-             enemy = other.transform;   
+              //  if(CanSeeEnemy(other.gameObject)){
+            enemy = other.transform;   
+            actionTimer = Random.Range(0.24f, 0.8f);
+            currentState = AIState.Running;
+            SwitchAnimationState(currentState);
+              //  }
             }
-             
 
-        actionTimer = Random.Range(0.24f, 0.8f);
-        currentState = AIState.Running;
-        SwitchAnimationState(currentState);
-        }
+        }  
+    }
+
+    //if it somehow gets away
+    private void OnTriggerExit(Collider other) {
+    //enemy=null;    
+    if(enemy.gameObject==other.gameObject){
+    SwitchAnimationState(AIState.Idle);
+    }
+    
+    }
+    public void Death(){
+       
+        gameObject.SetActive(false);
+        Debug.Log(gameObject.name+" died"); 
         
+        //if human does this add some meat to human inventory
+        if (health < 1)
+        {
+            Death();
+        }
        
-    }
-
-    void ReactToHealthLoss(){
-       //maybe run away or run faster
-    }
-
-    void Death(){
-       
-            //then deactivate agent
-           
-            //makes agent fall
         
     }
     
-     
-    IEnumerator ExampleCoroutine()
-    {
-        //yield on a new YieldInstruction that waits for 1 seconds.
-        yield return new WaitForSeconds(11);
-
+     public void TakeDamage(float damage){
+   
+        health=health+-damage;
+        healthBarAI.TakeDamage(damage);
+        healthBarAI.SetCurrentHealth(health);                                         
+       if (health<1)
+       {
+            Death();
+        
+       }
+        
     }
+    
+    public bool CanSeeEnemy(GameObject other){
+       Vector3 direction= other.transform.position-gameObject.transform.position;
+       float angle = Vector3.Angle(direction,gameObject.transform.position);
+       if (direction.magnitude<awarenessArea&&angle<280)
+       {
+                   Debug.Log(true);  
+
+           return true;
+       }
+       return false;
+   }
 }
 
 

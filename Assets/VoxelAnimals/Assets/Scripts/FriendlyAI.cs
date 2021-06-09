@@ -1,4 +1,4 @@
-  using UnityEngine;
+using UnityEngine;
 using UnityEngine.AI;
 using System.Collections.Generic;
 using System.Collections;
@@ -14,7 +14,7 @@ public class FriendlyAI : MonoBehaviour
     public Animator animator;
 
     //Trigger collider that represents the awareness area
-    SphereCollider c; 
+    SphereCollider c;
     NavMeshAgent agent;
 
     bool switchAction = false;
@@ -31,14 +31,14 @@ public class FriendlyAI : MonoBehaviour
     //How long the AI has been near the edge of NavMesh, if too long, send it to one of the random previousIdlePoints
     float timeStuck = 0;
     //Store previous idle points for reference
-    List<Vector3> previousIdlePoints = new List<Vector3>(); 
+    List<Vector3> previousIdlePoints = new List<Vector3>();
 
     AIManager aIManager;
-    float health=100;
+    float health = 100;
     HealthBarAI healthBarAI;
     //public GameObject food;
-
-    bool firstTime=true;
+    public GameObject whatsLeftBehind;
+    bool firstTime = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -54,14 +54,14 @@ public class FriendlyAI : MonoBehaviour
         currentState = AIState.Idle;
         actionTimer = Random.Range(0.1f, 2.0f);
         SwitchAnimationState(currentState);
-        
-        healthBarAI=GetComponentInChildren<HealthBarAI>();
+
+        healthBarAI = GetComponentInChildren<HealthBarAI>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (health<1)
+        if (health < 1)
         {
             Death();
         }
@@ -75,13 +75,13 @@ public class FriendlyAI : MonoBehaviour
         {
             switchAction = true;
         }
-        
+
         if (currentState == AIState.Idle)
         {
             //if switch action is called do one of two things 
             //1 run to a random place if enemy near
             //2 start jumping because you are happy there is no enemies
-            if(switchAction)
+            if (switchAction)
             {
                 if (enemy)
                 {
@@ -122,11 +122,11 @@ public class FriendlyAI : MonoBehaviour
             if (switchAction)
             {
                 //Wait for current animation to finish playing
-                if(!animator || animator.GetCurrentAnimatorStateInfo(0).normalizedTime - Mathf.Floor(animator.GetCurrentAnimatorStateInfo(0).normalizedTime) > 0.99f)
+                if (!animator || animator.GetCurrentAnimatorStateInfo(0).normalizedTime - Mathf.Floor(animator.GetCurrentAnimatorStateInfo(0).normalizedTime) > 0.99f)
                 {
                     //Walk to another random destination
                     agent.destination = RandomNavSphere(transform.position, Random.Range(3, 10));
-                    
+
                     currentState = AIState.Walking;
                     SwitchAnimationState(currentState);
                 }
@@ -167,14 +167,14 @@ public class FriendlyAI : MonoBehaviour
 
                     if (distanceToEdge < 1f)
                     {
-                        if(timeStuck > 1.5f)
+                        if (timeStuck > 1.5f)
                         {
                             //Maybe problem with this
-                            if(previousIdlePoints.Count > 0)
+                            if (previousIdlePoints.Count > 0)
                             {
                                 runTo = previousIdlePoints[Random.Range(0, previousIdlePoints.Count - 1)];
                                 reverseFlee = true;
-                            } 
+                            }
                         }
                         else
                         {
@@ -191,9 +191,9 @@ public class FriendlyAI : MonoBehaviour
                         enemy = null;
                     }
                 }
-                
+
                 //Temporarily switch to Idle if the Agent stopped
-                if(agent.velocity.sqrMagnitude < 0.1f * 0.1f)
+                if (agent.velocity.sqrMagnitude < 0.1f * 0.1f)
                 {
                     SwitchAnimationState(AIState.Idle);
                 }
@@ -265,38 +265,51 @@ public class FriendlyAI : MonoBehaviour
         if (other.CompareTag("Player"))
             return;
 
+        //if (CanSeeEnemy(other.gameObject))
+        //{
         enemy = other.transform;
-
-        //make something here so they might get eaten by tiger and die
-        
         actionTimer = Random.Range(0.24f, 0.8f);
         currentState = AIState.Running;
         SwitchAnimationState(currentState);
+        //}
+
     }
-    public void Death(){
+     
+    public void Death()
+    {
         if (firstTime)
         {
-        gameObject.SetActive(false);
-        firstTime=false;   
-        Debug.Log(gameObject.name+" died"); 
+            gameObject.SetActive(false);
+            firstTime = false;
+            Debug.Log(gameObject.name + " died");
+           
+            GameObject.Instantiate(whatsLeftBehind);
         }
-        //if human does this add some meat to human inventory
-        
-       
         
     }
-    public void TakeDamage(float damage){
-   
-        health=health+-damage;
+    public void TakeDamage(float damage)
+    {
+
+        health = health + -damage;
         healthBarAI.TakeDamage(damage);
-        healthBarAI.SetCurrentHealth(health);                                         
-       if (health<1)
-       {
+        healthBarAI.SetCurrentHealth(health);
+        if (health < 1)
+        {
             Death();
-        
-       }
-        
+        }
     }
-   
+
+    public bool CanSeeEnemy(GameObject other)
+    {
+        Vector3 direction = other.transform.position - gameObject.transform.position;
+        float angle = Vector3.Angle(direction, gameObject.transform.position);
+        if (direction.magnitude < awarenessArea && angle < 100)
+        {
+            Debug.Log(true);
+
+            return true;
+        }
+        return false;
+    }
 }
 

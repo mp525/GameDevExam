@@ -10,6 +10,7 @@ TagManager:
   - Axehead
   - Food
   - Stone
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
