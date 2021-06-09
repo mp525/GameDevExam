@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac6b06c4f30315e4a816e6ed36738485, type: 3}
   m_Name: Hat
   m_EditorClassIdentifier: 
-  Id: 1
+  Id: 3
   uiDisplay: {fileID: 2877298791648403826, guid: d07b803c54ae9fb4ebfc1e8a13b12f4c, type: 3}
-  type: 1
+  type: 2
   description: This is a hat.
   attackBonus: 0
   defenseBonus: 0

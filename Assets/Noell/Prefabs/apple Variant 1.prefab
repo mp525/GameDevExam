@@ -66,11 +66,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1624550317525199784, guid: 398db9a156846404faa5e27ae33d33d0, type: 3}
       propertyPath: m_Name
-      value: apple Variant
+      value: apple Variant 1
       objectReference: {fileID: 0}
     - target: {fileID: 8609960420488945144, guid: 398db9a156846404faa5e27ae33d33d0, type: 3}
       propertyPath: m_UseGravity
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8609960420488945145, guid: 398db9a156846404faa5e27ae33d33d0, type: 3}
       propertyPath: m_IsTrigger

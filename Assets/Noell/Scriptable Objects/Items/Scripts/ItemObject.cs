@@ -6,6 +6,7 @@ using UnityEngine;
 //To create a new item right click in the editor
 public enum ItemType
 {
+    Crafting,
     Food,
     Equipment,
     Default
@@ -22,6 +23,12 @@ public abstract class ItemObject : ScriptableObject
     //Creates a text area to write a description in the editor
     [TextArea (15,20)]
     public string description;
+
+    public Item CreateItem()
+    {
+        Item newItem = new Item(this);
+        return newItem;
+    }
 }
 
 [System.Serializable]

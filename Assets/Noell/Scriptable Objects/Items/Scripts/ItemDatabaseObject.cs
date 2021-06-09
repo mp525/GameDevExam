@@ -9,7 +9,7 @@ public class ItemDatabaseObject : ScriptableObject, ISerializationCallbackReceiv
     public ItemObject[] Items;
     //We use two dictionaries instead of one instead of using a double for loop 
     // public Dictionary<Item, int> GetId = new Dictionary<Item, int>();
-    public Dictionary<int, ItemObject> GetItem = new Dictionary<int, ItemObject >();
+    public Dictionary<int, ItemObject> GetItem = new Dictionary<int, ItemObject>();
 
     public void OnAfterDeserialize()
     {
@@ -30,7 +30,6 @@ public class ItemDatabaseObject : ScriptableObject, ISerializationCallbackReceiv
     public void OnBeforeSerialize()
     {
         GetItem = new Dictionary<int, ItemObject>();
-
     }
 
 }

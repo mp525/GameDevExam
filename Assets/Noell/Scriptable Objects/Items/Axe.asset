@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac6b06c4f30315e4a816e6ed36738485, type: 3}
-  m_Name: Old Axe
+  m_Name: Axe
   m_EditorClassIdentifier: 
-  Id: 0
+  Id: 1
   uiDisplay: {fileID: 4807586124992550770, guid: d07b803c54ae9fb4ebfc1e8a13b12f4c, type: 3}
-  type: 1
+  type: 2
   description: A worn old axe, it seems to still be functional.
   attackBonus: 5
   defenseBonus: 0
