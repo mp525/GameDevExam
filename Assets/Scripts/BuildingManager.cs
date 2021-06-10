@@ -41,7 +41,7 @@ public class BuildingManager : MonoBehaviour
                     builds = false;
                     menu = true;
                     Debug.Log("Close");
-                    buildingPlacement.CancelCurrentBuild();
+                    
                 }
     }
 

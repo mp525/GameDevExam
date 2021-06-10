@@ -1349,6 +1349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65fd25c4ce3d7814ca6fc809ed041005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasPlaced: 0
 --- !u!114 &609026957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5030,7 +5031,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3fca2ff222a0934792e18d92b89e4ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  daySpeed: 1
+  daySpeed: 0.3
   mainCamera: {fileID: 609026951}
   nightSound: {fileID: 8300000, guid: fcaa1c1026c7784489246e4e3214118f, type: 3}
   daySound: {fileID: 8300000, guid: 95c4fc20d6567b94d9ececfd300a93f3, type: 3}
