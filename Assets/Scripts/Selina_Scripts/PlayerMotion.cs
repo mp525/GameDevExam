@@ -46,7 +46,7 @@ public class PlayerMotion : MonoBehaviour
         moveDirection = moveDirection * movementSpeed;
         
 
-        Debug.Log("Magnitude : " + moveDirection.magnitude);
+      
 
         Vector3 movementVelocity = moveDirection;
         playerRB.velocity = movementVelocity;

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class HungerBar : MonoBehaviour
 {
     private Image hungerBar;
-    [SerializeField] private float currentHunger;
+    [SerializeField] public float currentHunger;
     private float maxHunger = 100f;
     PlayerManager playerManager;
 
@@ -23,5 +23,7 @@ public class HungerBar : MonoBehaviour
         currentHunger = playerManager.hunger;
         hungerBar.fillAmount = currentHunger / maxHunger;
     }
+
+   
 
 }

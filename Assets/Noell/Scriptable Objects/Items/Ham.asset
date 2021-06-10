@@ -16,4 +16,4 @@ MonoBehaviour:
   uiDisplay: {fileID: 8046220510369768166, guid: d07b803c54ae9fb4ebfc1e8a13b12f4c, type: 3}
   type: 1
   description: Beautiful smoked ham
-  restoreHungerValue: 10
+  restoreHungerValue: 30

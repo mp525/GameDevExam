@@ -37,7 +37,7 @@ public class BuildingManager : MonoBehaviour
                     buildingPlacement.SetItem(buildings[i]);
                 }
             }
-        if(GUI.Button(new Rect(Screen.width/20, Screen.height/15 + Screen.height/12 * 2, 100,30), "Close")){
+        if(GUI.Button(new Rect(Screen.width/20, Screen.height/15 + Screen.height/12 * 4, 100,30), "Close")){
                     builds = false;
                     menu = true;
                     Debug.Log("Close");

@@ -20,6 +20,15 @@ public class InputManager : MonoBehaviour
         animatorManager = GetComponent<AnimatorManager>();
     }
 
+    void Update(){
+        if(Input.GetKeyDown(KeyCode.LeftAlt)){
+            OnDisabled();
+        }
+        if(Input.GetKeyUp(KeyCode.LeftAlt)){
+            playerControls.Enable();
+        }
+    }
+
 
     private void OnEnable ()
     {

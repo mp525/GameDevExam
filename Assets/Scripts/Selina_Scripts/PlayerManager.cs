@@ -30,6 +30,12 @@ public float health = 100f;
 
     }
 
+     public void SetHunger(float value){
+        Debug.Log("Before: " + hunger);
+        hunger = hunger + value;
+        Debug.Log("After: " + hunger);
+    }
+
     void HungerOverTime()
     {
         hunger -= (hungerOverTime * Time.deltaTime);

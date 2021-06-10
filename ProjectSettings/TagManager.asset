@@ -11,6 +11,8 @@ TagManager:
   - Food
   - Stone
   - Checkpoint
+  - Building
+  - Workbench
   layers:
   - Default
   - TransparentFX

@@ -8,7 +8,6 @@ public class PlayerInventory : MonoBehaviour
 
     [SerializeField] KeyCode saveKey = KeyCode.Space;
     [SerializeField] KeyCode loadKey = KeyCode.Tab;
-
     public void OnTriggerEnter(Collider other) 
     {
         var item = other.GetComponent<GroundItem>();
@@ -37,6 +36,7 @@ public class PlayerInventory : MonoBehaviour
             Debug.Log("Loaded inventory!");
 
         }
+        
     }
 
     private void OnApplicationQuit() 

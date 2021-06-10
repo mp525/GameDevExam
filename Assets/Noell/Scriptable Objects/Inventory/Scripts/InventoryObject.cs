@@ -13,6 +13,8 @@ public class InventoryObject : ScriptableObject
     public ItemDatabaseObject database;
     public Inventory Container;
 
+    public HungerBar hungerBar;
+
     // private void OnEnable() {
     //     #if UNITY_EDITOR
     //     //Sets the database to where the file is in editor
@@ -21,6 +23,11 @@ public class InventoryObject : ScriptableObject
     //     database = Resources.Load<ItemDatabaseObject>("Database");
     //     #endif
     // }
+
+    void Start(){
+        
+    }
+
     public void AddItem(Item _item, int _amount)
     {
 
@@ -76,6 +83,20 @@ public class InventoryObject : ScriptableObject
                 //Sets it back to being empty/null
                 Container.Items[i].UpdateSlot(-1, null , 0);
             }
+        }
+    }
+
+    public void ConsumeItem(Item item, PlayerManager pm){
+        
+        if(item.Name.Equals("Apple")){ //Nødløsning
+            Debug.Log("Apple consumed!");
+            pm.SetHunger(10.0f);
+            RemoveItem(item);
+        }
+        if(item.Name.Equals("Ham")){ //Nødløsning
+        Debug.Log("Ham consumed!");
+            pm.SetHunger(30.0f);
+            RemoveItem(item);
         }
     }
 

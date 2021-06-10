@@ -24,6 +24,8 @@ public class DisplayInventory : MonoBehaviour
 
     public int Y_SPACE_BETWEEN_ITEM;
 
+    public PlayerManager playerManager;
+
 
     // Changing  things to de couple Inventory from Display Inventory.
 
@@ -41,6 +43,10 @@ public class DisplayInventory : MonoBehaviour
     void Update()
     {
         UpdateSlots();
+        if(Input.GetMouseButtonDown(1)){
+                Debug.Log("Consume");
+                inventory.ConsumeItem(mouseItem.hoverSlot.item, playerManager);
+            }
     }
 
 
@@ -110,12 +116,17 @@ public class DisplayInventory : MonoBehaviour
     {
         //Sets our hoverObject to the slot that we are hovering over
         mouseItem.hoverObject = obj;
+        Debug.Log("Hover on " + mouseItem.hoverObject.name);
+        
         //Checks if the object we're hovering over is an itemsDisplayed object
         if(itemsDisplayed.ContainsKey(obj))
         {
+            
             //If it is we will set the mouse's hoverSlot to that inventory slot (represented as hoverSlot)
             mouseItem.hoverSlot = itemsDisplayed[obj];
+            
         }
+        
     }
     public void OnExit(GameObject obj)
     {
@@ -162,6 +173,7 @@ public class DisplayInventory : MonoBehaviour
         {
             //Sets the item's position to the mouse's position
             mouseItem.obj.GetComponent<RectTransform>().position = Input.mousePosition;
+            
         }
 
     }
