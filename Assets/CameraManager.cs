@@ -6,7 +6,7 @@ public class CameraManager : MonoBehaviour
 
 {
     InputManager inputManager;
-    public Transform targetTransform;
+    public Transform targetTransform; //Objektet som kameraet til følge
     public Transform cameraPivot;
     private Vector3 cameraFollowVelocity = Vector3.zero;
     
@@ -31,8 +31,13 @@ public class CameraManager : MonoBehaviour
     }
     private void FollowTarget()
     {
-        Vector3 targetPosition = Vector3.SmoothDamp(transform.position, targetTransform.position, ref cameraFollowVelocity, cameraFollowSpeed);
+        //Denne vector3 variable, vil opdateres sig til at blive spillerens position (targetTransform) fra den nuværende position (transform)
+        Vector3 targetPosition = Vector3.SmoothDamp
+        (transform.position, targetTransform.position, ref cameraFollowVelocity, cameraFollowSpeed);
+        //Sætter den akutelle position for spilleren
         transform.position = targetPosition;
+        
+
     }
 
 
