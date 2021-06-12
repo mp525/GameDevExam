@@ -554,7 +554,7 @@ GameObject:
   - component: {fileID: 310364527732222628}
   - component: {fileID: 310364527732222629}
   - component: {fileID: 310364527732222630}
-  - component: {fileID: 310364527732222631}
+  - component: {fileID: 477849011}
   m_Layer: 5
   m_Name: StartGameUI
   m_TagString: Untagged
@@ -647,7 +647,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &310364527732222631
+--- !u!114 &477849011
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -656,7 +656,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 310364527732222624}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a11ebca262b50e41a9f8737e9510df0, type: 3}
+  m_Script: {fileID: 11500000, guid: fb9a732d8472dff4e8e1dbca5b547098, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &310364527883318882

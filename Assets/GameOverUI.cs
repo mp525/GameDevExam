@@ -8,7 +8,7 @@ public class GameOverUI : MonoBehaviour
         
     }
     public void PlayAgain(){
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
     public  void Quit(){
          Application.Quit();

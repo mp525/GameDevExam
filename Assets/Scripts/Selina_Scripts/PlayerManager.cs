@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -28,6 +29,13 @@ public float health = 100f;
         inputManager.HandleAllInputs();
         HungerOverTime();
 
+        if(hunger <= 0){
+            HealthOverTime();
+            if(health <= 0){
+                SceneManager.LoadScene(2);
+            }
+        }
+
     }
 
      public void SetHunger(float value){
@@ -39,6 +47,11 @@ public float health = 100f;
     void HungerOverTime()
     {
         hunger -= (hungerOverTime * Time.deltaTime);
+    }
+
+    void HealthOverTime()
+    {
+        health -= (5.0f * Time.deltaTime);
     }
 
     private void FixedUpdate()
