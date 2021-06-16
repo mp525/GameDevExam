@@ -86,7 +86,7 @@ public class Patrol:State{
     }
     public override void Enter()
     {
-        Debug.Log("Walking state");
+       
         currentIndex=0;
         animator.SetTrigger("isWalking");
         base.Enter();
@@ -105,6 +105,7 @@ public class Patrol:State{
             else
             currentIndex++;
             agent.SetDestination(GameEnvironment.Singleton.Checkpoints[currentIndex].transform.position);  
+            Debug.Log("going to "+ GameEnvironment.Singleton.Checkpoints[currentIndex]);
         }
         
     }

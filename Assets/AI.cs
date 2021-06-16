@@ -19,11 +19,13 @@ public class AI : MonoBehaviour
         animator=this.GetComponent<Animator>();
         currentState=new Idle(this.gameObject,agent,animator,enemy);
          healthBarAI = GetComponentInChildren<HealthBarAI>();
+       
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         currentState=currentState.Process();
     
     }

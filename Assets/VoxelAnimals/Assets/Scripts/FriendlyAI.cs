@@ -125,7 +125,7 @@ public class FriendlyAI : MonoBehaviour
                 if (!animator || animator.GetCurrentAnimatorStateInfo(0).normalizedTime - Mathf.Floor(animator.GetCurrentAnimatorStateInfo(0).normalizedTime) > 0.99f)
                 {
                     //Walk to another random destination
-                    agent.destination = RandomNavSphere(transform.position, Random.Range(3, 10));
+                    agent.destination = RandomNavSphere(transform.position, Random.Range(3, 30));
 
                     currentState = AIState.Walking;
                     SwitchAnimationState(currentState);

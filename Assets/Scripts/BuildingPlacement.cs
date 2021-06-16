@@ -9,6 +9,7 @@ public class BuildingPlacement : MonoBehaviour
     private PlaceableBuilding placeableBuilding;
     private Transform currentBuilding;
 
+    public GameObject playerHand;
     public bool hasPlaced;
 
     private float rotY;
@@ -94,9 +95,24 @@ public class BuildingPlacement : MonoBehaviour
     }
 
     public void SetItem(GameObject b){
-        hasPlaced = false;
+        if(b.name=="torch"){
+            hasPlaced = false;
+
+             GameObject childObject = Instantiate(b) as GameObject;
+             //Position
+             childObject.transform.position=new Vector3(playerHand.transform.position.x,playerHand.transform.position.y,playerHand.transform.position.z);
+             //Rotation
+              Quaternion rotation = Quaternion.Euler(50, playerHand.transform.rotation.y, playerHand.transform.rotation.z);
+             childObject.transform.rotation=rotation;
+             
+            childObject.transform.parent = playerHand.transform;
+           
+        }else{
+             hasPlaced = false;
         currentBuilding = ((GameObject)Instantiate(b)).transform;
         placeableBuilding = currentBuilding.GetComponent<PlaceableBuilding>();
+        }
+       
     }
 
      public static bool IsPointerOverUIObject()

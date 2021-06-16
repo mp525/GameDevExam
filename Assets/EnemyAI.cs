@@ -179,7 +179,12 @@ public class EnemyAI : MonoBehaviour
                     
                     if(enemy.gameObject.GetComponent<FriendlyAI>()){
                     enemy.gameObject.GetComponent<FriendlyAI>().TakeDamage(attackDamage);
-                    }else
+                    }
+                    if (enemy.gameObject.GetComponent<PlayerManager>())
+                    {
+                        enemy.gameObject.GetComponent<PlayerManager>().TakeDamage(attackDamage);
+                    }
+                    if(enemy.gameObject.GetComponent<AI>())
                     {
                         enemy.gameObject.GetComponent<AI>().TakeDamage(attackDamage);
                     }

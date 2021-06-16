@@ -63,4 +63,31 @@ public float health = 100f;
     {
         cameraManager.HandleAllCameraMovement();
     }
+
+
+    public void TakeDamage(float damage){
+   float chanceOfHitting =Random.Range(1,4);
+        
+        if (chanceOfHitting==1)
+        {
+        health=health+-damage;    
+        }
+        
+        
+       if (health<1)
+       {
+            Death();
+        
+       }
+        
+    }
+
+        public void Death(){
+       
+        SceneManager.LoadScene(2);
+        //if human does this add some meat to human inventory
+        
+       
+        
+    }
 }
