@@ -105,7 +105,6 @@ public class Patrol:State{
             else
             currentIndex++;
             agent.SetDestination(GameEnvironment.Singleton.Checkpoints[currentIndex].transform.position);  
-            Debug.Log("going to "+ GameEnvironment.Singleton.Checkpoints[currentIndex]);
         }
         
     }

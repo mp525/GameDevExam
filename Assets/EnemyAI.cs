@@ -177,17 +177,7 @@ public class EnemyAI : MonoBehaviour
                 {
                     SwitchAnimationState(AIState.Hit);
                     
-                    if(enemy.gameObject.GetComponent<FriendlyAI>()){
-                    enemy.gameObject.GetComponent<FriendlyAI>().TakeDamage(attackDamage);
-                    }
-                    if (enemy.gameObject.GetComponent<PlayerManager>())
-                    {
-                        enemy.gameObject.GetComponent<PlayerManager>().TakeDamage(attackDamage);
-                    }
-                    if(enemy.gameObject.GetComponent<AI>())
-                    {
-                        enemy.gameObject.GetComponent<AI>().TakeDamage(attackDamage);
-                    }
+                   // Attack();
                     
                     
                     
@@ -340,6 +330,19 @@ public class EnemyAI : MonoBehaviour
        }
        return false;
    }
+public void Attack(){
+    if(enemy.gameObject.GetComponent<FriendlyAI>()){
+                    enemy.gameObject.GetComponent<FriendlyAI>().TakeDamage(attackDamage);
+                    }
+                    if (enemy.gameObject.GetComponent<PlayerManager>())
+                    {
+                        enemy.gameObject.GetComponent<PlayerManager>().TakeDamage(attackDamage);
+                    }
+                    if(enemy.gameObject.GetComponent<AI>())
+                    {
+                        enemy.gameObject.GetComponent<AI>().TakeDamage(attackDamage);
+    }
+}
 }
 
 
