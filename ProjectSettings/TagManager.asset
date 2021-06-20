@@ -13,6 +13,7 @@ TagManager:
   - Checkpoint
   - Building
   - Workbench
+  - Env
   layers:
   - Default
   - TransparentFX

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1041055319626306032}
   m_Layer: 0
   m_Name: Apple
-  m_TagString: Untagged
+  m_TagString: Env
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,6 +98,10 @@ PrefabInstance:
     - target: {fileID: 6830408142263747961, guid: 2d81dc3452791894c827505a548cc7ed, type: 3}
       propertyPath: m_Name
       value: apple Variant 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6830408142263747961, guid: 2d81dc3452791894c827505a548cc7ed, type: 3}
+      propertyPath: m_TagString
+      value: Env
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d81dc3452791894c827505a548cc7ed, type: 3}

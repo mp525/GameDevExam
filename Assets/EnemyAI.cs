@@ -38,6 +38,9 @@ public class EnemyAI : MonoBehaviour
     HealthBarAI healthBarAI;
     bool firstTime=true;
 
+//closest edge mistake
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -269,15 +272,20 @@ public class EnemyAI : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        
+        //does not have current target
         if (!enemy){
             if (other.gameObject.activeSelf)
             {
               //  if(CanSeeEnemy(other.gameObject)){
-            enemy = other.transform;   
+                  if(other.tag=="Env"){
+           
+                  }else{
+                       enemy = other.transform;   
             actionTimer = Random.Range(0.24f, 0.8f);
             currentState = AIState.Running;
             SwitchAnimationState(currentState);
+                  }
+           
               //  }
             }
 
@@ -318,18 +326,7 @@ public class EnemyAI : MonoBehaviour
        }
         
     }
-    
-    public bool CanSeeEnemy(GameObject other){
-       Vector3 direction= other.transform.position-gameObject.transform.position;
-       float angle = Vector3.Angle(direction,gameObject.transform.position);
-       if (direction.magnitude<awarenessArea&&angle<280)
-       {
-                   Debug.Log(true);  
 
-           return true;
-       }
-       return false;
-   }
 public void Attack(){
     if(enemy.gameObject.GetComponent<FriendlyAI>()){
                     enemy.gameObject.GetComponent<FriendlyAI>().TakeDamage(attackDamage);
@@ -343,6 +340,18 @@ public void Attack(){
                         enemy.gameObject.GetComponent<AI>().TakeDamage(attackDamage);
     }
 }
+    //discarded
+    public bool CanSeeEnemy(GameObject other){
+       Vector3 direction= other.transform.position-gameObject.transform.position;
+       float angle = Vector3.Angle(direction,gameObject.transform.position);
+       if (direction.magnitude<awarenessArea&&angle<280)
+       {
+                   Debug.Log(true);  
+
+           return true;
+       }
+       return false;
+   }
 }
 
 

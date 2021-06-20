@@ -153,6 +153,7 @@ public class FriendlyAI : MonoBehaviour
                 }
                 else
                 {
+                    //Run away math
                     Vector3 runTo = transform.position + ((transform.position - enemy.position) * multiplier);
                     distance = (transform.position - enemy.position).sqrMagnitude;
 
@@ -299,6 +300,7 @@ public class FriendlyAI : MonoBehaviour
         }
     }
 
+//discarded
     public bool CanSeeEnemy(GameObject other)
     {
         Vector3 direction = other.transform.position - gameObject.transform.position;
